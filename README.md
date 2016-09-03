@@ -10,6 +10,9 @@ Python 3 is required. Once that is installed, from the command line run:
 
     pip install django
 
+## Deployment
+Check the Wiki.
+
 ## Using the Administrative Settings
 The admin site contains the forms to create new pages.
 
