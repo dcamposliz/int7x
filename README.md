@@ -16,7 +16,7 @@ Check the Wiki.
 ## Using the Administrative Settings
 The admin site contains the forms to create new pages.
 
-# Prerequisite: Create a superuser
+### Prerequisite: Create a superuser
 https://docs.djangoproject.com/en/1.9/ref/django-admin/#createsuperuser
 
 From the command line, type:
@@ -24,5 +24,5 @@ From the command line, type:
 
 You will then be prompted to enter a username, email and password.
 
-# Using the Admin Site
+### Using the Admin Site
 Go to http://(site this app is hosted on)/admin/ and sign in with your credentials.
