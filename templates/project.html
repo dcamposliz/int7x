@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block more_meta %}
+<meta name="author" content="{{ meta_author }}">
+{% endblock %}
+
+{% block title %}{{ project.title }} - Inertia7{% endblock %}
+
+{% block more_head %}
+<script type="text/javascript" src="{% static 'engines/scripts.js' %}"></script>
+<link href="{% static 'css/d3_style.css' %}" rel="stylesheet" type="text/css">
+<script src="http://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<!-- Vincent's Custom CSS -->
+<style type="text/css">
+/* General Styling */
+img {
+    /* This centers the image */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 > a {
+    color: inherit;
+}
+h1 > a:hover {
+    text-decoration: none;
+}
+
+pre {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+/* Header Styling */
+{% if project.cover_photo %}
+header {
+    background: url({{ project.cover_photo }});
+}
+{% endif %}
+
+/* Section-Specific Styling */
+#abstract > * {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+#summary h2 {
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+#summary h3 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+#project-writeup > * h1 {
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 1em;
+    padding-top: 0.75em;
+    padding-bottom: 0.75em;
+    color: #3c3c3c;
+    text-align: center;
+}
+
+#project-writeup > section > * {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+}
+
+#project-writeup > * h2, #project-writeup > * h3 {
+    margin-top: 2em;
+}
+
+#project-writeup > * h2 { text-align: left; } 
+#project-writeup > * h3 { font-size: 1.35em; }
+
+#next-tutorial {
+    visibility: visible;
+    animation-name: fadeInUp;
+}
+
+#next-tutorial > h3 { margin-top: 1em; }
+
+#next-tutorial > * img {
+    width: 300px;
+    height: 200px;
+}
+
+</style>
+<!-- End of custom CSS -->
+
+{% endblock %}
+{% block content %}
+<div style="overflow:hidden;">
+<div style="float:left; margin-top:3%; margin-left:7%">
+    <a href="../" style="color:white; font-family: 'Montserrat', sans-serif; font-size: 1.5em;">INERTIA7</a>
+</div>
+<header class="header">
+    <div class="container" style="margin-top: 3em;"> 
+        <h1 class="animated fadeInDown delay-07s" style="text-transform: uppercase">{{ project.title }}</h1>
+        <ul class="we-create animated fadeInUp delay-1s">
+            <li>{{ project.subtitle }}</li>
+        </ul>
+    </div>
+</header>
+
+<!-- PROJECT SUMMARY -->
+    <section id="summary" class="main-section xlarge-paragraph" style="margin-top: 2em">
+        <div class="container">
+            <h2>Project Summary</h2>
+            <h3>Abstract</h3>
+            <div id="abstract">
+                {{ project.abstract }}
+            </div>
+        </div>
+        <!-- Requirements: Only shown if defined -->
+        {% if project.requirements %}
+        <div class="container xlarge-paragraph">
+            <h3>Requirements</h3>
+            {{  project.requirements.content }}
+        </div>
+        {% endif %}
+        <div class="container xlarge-paragraph">
+            <h3>Steps</h3>
+            <ul>
+                {% for header in headers %}
+                <li><a href="#step{{ forloop.counter }}">{{ forloop.counter }}. {{ header }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="container xlarge-paragraph">
+            <h3>Contributors</h3>
+            <ul>
+                {% for author in project.contributors %}
+                <li>{{ author }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <!-- Main content -->
+    <div id="project-writeup" class="container">
+        {{ project.content }}
+        </div>
+    <!-- End main content -->
+    <!-- Congrats -->
+    <section class="main-section">
+        <div class="container">
+        <p>Congratulations for getting this far! We hope you enjoyed this project. Please reach out to us here if you have any feedback or would like to publish your own project.</p>
+        </div>
+    </section>
+    <!-- End congrats -->
+    <!-- GitHub: Show GitHub link (if specified) -->
+    {% if project.github_link %}
+    <section class="main-section">
+        <div class="container" style="text-align:center;">
+            <p>FORK THIS PROJECT ON GITHUB</p>
+            <a href="{{ project.github_link }}" target="_blank">
+            <img src="{% static 'img/github_2.png' %}" alt="GitHub Repo Link" height="42" width="42">
+            </a>
+        </div>
+    </section>    
+    {% endif %}
+    <!-- End GitHub -->
+    <!-- Next Tutorial -->
+    {% if project.next_tutorial %}
+    <section class="main-section">
+        <div class="container" style="text-align:center;">
+        <h3>Try this project next:</h3>
+        <hr>
+        <div id="next-tutorial" class="wow fadeInUp delay-04s animated">
+            <a href="{{ project.next_tutorial.url }}">
+            {% if project.next_tutorial.thumbnail_photo %}
+            <img src="/static/{{ project.next_tutorial.url }}/{{ project.next_tutorial.thumbnail_photo }}" alt="{{ project.next_tutorial.title }}">
+            {% else %}
+            (Image goes here)
+            {% endif %}
+            </a>
+            <h3>{{ project.next_tutorial.title }}</h3>
+            <p>{{ project.next_tutorial.subtitle }}</p>
+        </div>
+        </div>
+        </section>
+    <!-- End Next Tutorial -->
+    {% endif %}
+<!-- END SUMMARY -->
+
+<!-- Progress Bar -->
+<script>
+    wow = new WOW(
+      {
+        animateClass: 'animated',
+        offset:       100
+      }
+    );
+    wow.init();
+    </script>
+<script type="text/javascript">
+    $(window).scroll(function () {
+      var s = $(window).scrollTop(),
+            d = $(document).height(),
+            c = $(window).height();
+            scrollPercent = (s / (d-c)) * 100;
+            var position = scrollPercent;
+
+       $("#progressbar").attr('value', position);
+
+    });
+</script>
+{% endblock %}

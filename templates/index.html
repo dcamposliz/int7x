@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block more_meta %}
+<meta name="author" content="David A. Campos, Raul Eulogio">
+{% endblock %}
+
+{% block more_head %}
+<!-- Particles -->
+<link href="{% static 'css/particles.css' %}" rel="stylesheet" type="text/css">
+
+<!-- Vincent's Custom CSS -->
+<style type="text/css">
+/* Portfolio/Projects Listing CSS */
+#projects {
+    margin-top: 4em;
+}
+
+#projects > * img {
+    width: 300px;
+    height: 200px;
+}
+</style>
+<!-- End of custom CSS -->
+{% endblock %}
+{% block content %}
+<div style="overflow:hidden;">
+<div id="particles-js"></div>
+<header class="header" id="header"><!--header-start-->
+    <div class="container">
+            <div id="welcome">
+                <figure class="logo animated fadeInDown delay-07s">
+                    <a href="#"><img src="{% static 'img/data_logo.png' %}" alt=""></a>    
+                </figure>   
+                <h1 class="animated fadeInDown delay-07s">WELCOME TO INERTIA7</h1>
+                <ul class="we-create animated fadeInUp delay-1s">
+                    <li>We do <strong>data science</strong> projects and publish them with our step-by-step process so <strong>you can learn too!</strong></li>
+                </ul>
+                <a class="link animated fadeInUp delay-1s" href="#test">LEARN NOW</a>
+            </div>
+    </div>
+</header>
+<!--header-end-->
+<nav class="main-nav-outer" id="test"><!--main-nav-start-->
+    <div class="container">
+        <ul class="main-nav">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#purpose">Why Data Science?</a></li>
+            <li class="small-logo large-paragraph"><a href="#header"><img src="{% static 'img/data_logo.png' %}" alt="" width="100px">  Inertia7</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#sayHi">Say Hi</a></li>
+        </ul>
+        <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
+    </div>
+</nav>
+<section class="main-section paddind" id="projects"><!--main-section-start-->
+	<div class="container">
+    	<h2>Projects</h2>
+    	<h6>Explore, learn, and re-produce data science projects written in R!</h6>
+	</div>
+    <div class="portfolioContainer wow fadeInUp delay-04s">
+        {% for project in projects %}
+        {% if project.show_on_front_page %}
+        <div class="Portfolio-box printdesign">
+        	<a href="projects/{{ project.url }}">
+            {% if project.thumbnail_photo %}
+            <img src="/static/{{ project.url }}/{{ project.thumbnail_photo }}" alt="{{ project.title }}">
+            {% else %}
+            (Image goes here)
+            {% endif %}
+            </a>	
+        	<h3>{{ project.title }}</h3>
+            <p>{{ project.subtitle }}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <!--
+    	<div class="Portfolio-box printdesign">
+        	<a href="projects/timeSeries_stockMarket.html"><img src="{% static 'img/wallStreet_2.png' %}" alt="" height="200px" width="300px"></a>	
+        	<h3>Forecasting the Stock Market</h3>
+            <p>Time Series Analysis of the S&amp;P 500s Stock Index with <strong>R</strong></p>
+        </div>
+        <div class="Portfolio-box printdesign">
+            <a href="projects/regression_bostonHousing.html"><img src="{% static 'img/regression_bostonHousing/bostonHousing.png' %}" alt="" height="200px" width="300px"></a>
+            <h3>Modeling Home Prices</h3>
+            <p>Regression Analysis of Boston Home Prices with <strong>R</strong></p>
+        </div>
+        <div class="Portfolio-box printdesign">
+            <a href="projects/classification_iris.html"><img src="img/classification_iris/iris_2.png" alt="" height="200px" width="300px"></a>
+            <h3>Classifying Iris Flowers</h3>
+            <p>KNN Analysis of Iris Flowers with <strong>R</strong></p>
+        </div>
+        -->
+    </div>
+</section>
+
+<section class="purpose" id="purpose"><!--main-section client-part-start-->
+    <div class="container">
+
+        <h2 class="animated fadeInDown delay-07s">Why data science?</h2>
+        <ul class="we-create animated fadeInUp delay-1s">
+            <li>
+                According to Ben Walker's big data infographic on <a href="http://www.vcloudnews.com/every-day-big-data-statistics-2-5-quintillion-bytes-of-data-created-daily/">Voucher Cloud</a>, humanity will generate around 50,000 GB of data per second by year 2018. And according to <a href="http://www.forbes.com/sites/bernardmarr/2015/09/30/big-data-20-mind-boggling-facts-everyone-must-read/#70a2fdeb6c1d">Forbes</a>, less than 0.5% of data is currently analyzed or used at the moment.
+            </li>
+            <br/>
+            <br/>
+            <li>
+                At the intersection of statistics and computer science, data science is a discipline that enables human-beings to extract valuable knowledge from data. These insights are propelling our evolution as a species in advancing our understanding of the universe, enabling us to create intelligent machines, as well as improving our decision-making capabilities. 
+            </li>
+            <br/>
+            <br/>
+            <li>
+                Data science will catalyze our transition from the information age to the intelligence age.
+            </li>
+        </ul>
+
+    </div>
+</section><!--main-section client-part-end-->
+
+<section class="main-section team" id="team"><!--main-section team-start-->
+    <div class="container">
+        <h2>team</h2>
+        <h6>Data nerds with a flair for hacking things together.</h6>
+        <div class="team-leader-block clearfix">
+            <div class="team-leader-box">
+                <div class="team-leader wow fadeInDown delay-03s"> 
+                    <div class="team-leader-shadow"></div>
+                    <img src="{% static 'img/david.png' %}" alt="">
+                    <ul>
+                        <li><a href="https://www.github.com/dcamposliz" class="fa-github" target="_blank"></a></li>
+                    </ul>
+                </div>
+                <h3 class="wow fadeInDown delay-03s">David A. Campos</h3>
+                <span class="wow fadeInDown delay-03s">Contributor</span>
+                <p class="wow fadeInDown delay-03s">Tech-addict who loves building internet &amp; data machines.</p>
+            </div>
+            <div class="team-leader-box">
+                <div class="team-leader  wow fadeInDown delay-06s"> 
+                    <div class="team-leader-shadow"></div>
+                    <img src="{% static 'img/ravi.png' %}" alt="">
+                    <ul>
+                        <li><a href="https://www.github.com/raviolli77" class="fa-github" target="_blank"></a></li>
+                    </ul>
+                </div>
+                <h3 class="wow fadeInDown delay-06s">Raul Eulogio</h3>
+                <span class="wow fadeInDown delay-06s">Contributor</span>
+                <p class="wow fadeInDown delay-06s">Self-proclaimed stats nerd who loves all things data.</p>
+            </div>
+            <div class="team-leader-box">
+                <a href="./#sayHi">
+                    <div class="team-leader  wow fadeInDown delay-06s"> 
+                        <div class="team-leader-shadow"></div>
+                            <img src="{% static 'img/you.png' %}" alt="">
+                    </div>
+                </a>
+                <h3 class="wow fadeInDown delay-06s">You</h3>
+                <span class="wow fadeInDown delay-06s">Contributor</span>
+                <p class="wow fadeInDown delay-06s">Give us your feedback so we can improve this project for you.</p>
+            </div>
+        </div>
+    </div>
+</section><!--main-section team-end-->
+<!--<section id="emptySection">    
+</section>-->
+<hr/>
+<section class="main-section contact" id="sayHi">
+    <div class="container">	
+        <h2>Say Hi</h2>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-lg-6 col-sm-7 wow fadeInLeft">
+                <h3>Message us if you:</h3>
+                <br/>
+                <br/>
+                <div class="contact-info-box clearfix">
+                	<span>
+                        <ul>
+                            <li>
+                                Want to learn more about a particular project.
+                            </li>
+                            <br/>
+                            <li>
+                                Have feedback or suggestions about this site in general, or about any of the projects listed.
+                            </li>
+                            <br/>
+                            <li>
+                                Would like to publish a project of yours here!
+                            </li>
+                        </ul>   
+                    </span>
+                </div>
+                <!--
+                <div class="contact-info-box phone clearfix">
+                    <h3><i class="fa-phone"></i>Phone:</h3>
+                    <span>1-800-BOO-YAHH</span>
+                </div>
+                <div class="contact-info-box email clearfix">
+                    <h3><i class="fa-pencil"></i>email:</h3>
+                    <span>hello@knightstudios.com</span>
+                </div>
+                <div class="contact-info-box hours clearfix">
+                    <h3><i class="fa-clock-o"></i>Hours:</h3>
+                    <span><strong>Monday - Thursday:</strong> 10am - 6pm<br><strong>Friday:</strong> People work on Fridays now?<br><strong>Saturday - Sunday:</strong> Best not to ask.</span>
+                </div>
+                -->
+                <ul class="social-link">
+                    <li class="facebook"><a href="https://www.github.com/inertia7" target="_blank"><i class="fa-github"></i></a></li>
+                    <li class="facebook"><a href="http://www.facebook.com/inertia7" target="_blank"><i class="fa-facebook"></i></a></li>
+                <!--
+                    <li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>
+                    <li class="pinterest"><a href="#"><i class="fa-pinterest"></i></a></li>
+                    <li class="gplus"><a href="#"><i class="fa-google-plus"></i></a></li>
+                    <li class="dribbble"><a href="#"><i class="fa-dribbble"></i></a></li>
+                -->
+                </ul>
+            </div>
+            <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+                <div class="form">
+                <script type="text/javascript">var submitted=false;</script>
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='index.html';}"></iframe>
+                <form id="inertia7_contactForm_1" action="https://docs.google.com/forms/d/184eZahu_wVmGghqNoeCgfIYBdBYgYx-r1U6E1OlamX4/formResponse" method="post" role="form" target="hidden_iframe" onsubmit="submitted=true;">
+
+                    <input class="input-text" type="text" name="entry.1884733550" value="Your Name *" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+                    <input class="input-text" type="text" name="entry.143739736" value="Your E-mail *" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+                    <textarea class="input-text text-area" name="entry.1525017681" placeholder="Send us your message" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;"></textarea>
+                    <input class="input-btn" type="submit" value="send message">
+                
+                </form>
+                </div>  
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Particles -->
+<script type="text/javascript" src="{% static 'js/particles.js' %}"></script>
+
+{% endblock %}
