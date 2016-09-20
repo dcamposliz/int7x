@@ -823,6 +823,27 @@ border: 2px solid #fff;
 	background:url(../img/recommendedResources.png);
 }
 
+#timeSeries_stockMarket{
+	background:url(../img/wallStreet_2.png);
+}
+
+#regression_bostonHousing{
+	background:url(../img/regression_bostonHousing/bostonHousing_2.png);
+}
+
+#classification_iris{
+	background:url(../img/classification_iris/iris_3.png);
+}
+
+
+/*
+	CODE
+
+code {	 
+}
+
+*/
+
 pre {
 	padding-left: 3%;
 	padding-right: 3%;

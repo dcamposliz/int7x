@@ -49,7 +49,8 @@
 header {
     text-align:center;
 	background: url({% static 'img/neuralNetork_purple_100_black_75.jpg' %});
-	padding:315px 0;
+    margin: 0;
+    padding: 0;
 }
 
 header h1 {
@@ -111,6 +112,7 @@ footer > div:first-of-type {
 {% endblock %}
 
 <footer>
+    {% block footer %}{% endblock %}
     <div>
         <a href="https://www.r-project.org/" target="_blank">DOWNLOAD R</a> | 
         <a href="https://www.rstudio.com/home/" target="_blank">DOWNLOAD R STUDIO</a> |

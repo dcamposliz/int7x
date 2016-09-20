@@ -74,7 +74,7 @@ class HTMLReplace(HTMLParser):
         
         # Add section class attribute
         elif self.current_tag == "section":
-            self.html_replace += "<section class='main-section xlarge-paragraph'>"
+            self.html_replace += "<section class='xlarge-paragraph'>"
         
         # Don't forget attribute tags!
         else:
