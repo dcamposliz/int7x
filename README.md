@@ -86,130 +86,124 @@ Type into the terminal:
 
 Type into the terminal:
 
-  virtualenv <virtual-env-name>
+    virtualenv <virtual-env-name>
 
 ##### Activate the Virtual Environment
 
-  source <virtual-env-name>/bin/activate
+    source <virtual-env-name>/bin/activate
 
 Your terminal should output something like this:
 
-  (myProjectEnv)user@host:~/myproject$.
+    (myProjectEnv)user@host:~/myproject$.
 
 While inside the virtual environment, type:
 
-  pip install django
+    pip install django
 
 Deactivate the virtual environment by typing:
 
-  deactivate
-
-############################################################
-############################################################
-
-
-	
+    deactivate	
 
 #### Configure Apache
 
 To configure our Django app to be served by Apache, we'll need to edit the default virtual host file:
  
-  sudo nano /etc/apache2/sites-available/000-default.conf
+    sudo nano /etc/apache2/sites-available/000-default.conf
 
 First we tell Apache to map any requests for `/static` to our project's static files folder.
 
-  <VirtualHost *:80>
-    
-    ...
-    
-    Alias /static /home/ubuntu/<project-folder-name>/static
-    
-    <Directory  /home/ubuntu/<project-folder-name>/static>
-      
-      Require all granted
-    
-    </Directory>
+    <VirtualHost *:80>
 
-  </VirtualHost>
+        ...
+
+        Alias /static /home/ubuntu/<project-folder-name>/static
+
+        <Directory  /home/ubuntu/<project-folder-name>/static>
+          
+          Require all granted
+
+        </Directory>
+
+    </VirtualHost>
 
  
 This will allow our templates to access the required CSS and JavaScript files stored inside.
  
 Next, we grant Apache access to the `wsgi.py` file, which is located at `/home/ubuntu/<project-folder-name>/inertia7/wsgi.py`
  
-  <VirtualHost *:80>
+    <VirtualHost *:80>
 
-    ...
+        ...
 
-    Alias /static /home/ubuntu/<project-folder-name>/static
-    
-    <Directory /home/ubuntu/<project-folder-name>/static>
-    
-      Require all granted
-    
-    </Directory>
+        Alias /static /home/ubuntu/<project-folder-name>/static
 
-    <Directory /home/ubuntu/<project-folder-name>/inertia7>
-      
-      <Files wsgi.py>
-        
-        Require all granted
-      
-      </Files>
-    
-    </Directory>
+        <Directory /home/ubuntu/<project-folder-name>/static>
 
-  </VirtualHost>
+            Require all granted
+
+        </Directory>
+
+        <Directory /home/ubuntu/<project-folder-name>/inertia7>
+          
+            <Files wsgi.py>
+
+                Require all granted
+
+            </Files>
+
+        </Directory>
+
+    </VirtualHost>
 
 Lastly, specify the process group:
 
-  <VirtualHost *:80>
+    <VirtualHost *:80>
 
-    ...
+        ...
 
-    Alias /static /home/ubuntu/<project-folder-name>/static
+        Alias /static /home/ubuntu/<project-folder-name>/static
 
-    <Directory /home/ubuntu/<project-folder-name>/static>
+        <Directory /home/ubuntu/<project-folder-name>/static>
 
-      Require all granted
+            Require all granted
 
-    </Directory>
+        </Directory>
 
-    <Directory /home/ubuntu/<project-folder-name>/inertia7>
-      
-      <Files wsgi.py>
+        <Directory /home/ubuntu/<project-folder-name>/inertia7>
+          
+            <Files wsgi.py>
 
-        Require all granted
+                Require all granted
 
-      </Files>
+            </Files>
 
-    </Directory>
+        </Directory>
 
-    WSGIDaemonProcess myproject python-path=/home/ubuntu/<project-folder-name>:/home/ubuntu/<project-folder-name>/<virtual-env-name>/lib/python3.4/site-packages
+        WSGIDaemonProcess myproject python-path=/home/ubuntu/<project-folder-name>:/home/ubuntu/<project-folder-name>/<virtual-env-name>/lib/python3.4/site-packages
 
-    WSGIProcessGroup myproject
+        WSGIProcessGroup myproject
 
-    WSGIScriptAlias / /home/ubuntu/<project-folder-name>/inertia7/wsgi.py
+        WSGIScriptAlias / /home/ubuntu/<project-folder-name>/inertia7/wsgi.py
 
-  </VirtualHost>
+    </VirtualHost>
 
 **Remember**: Substitute python3.4 for whatever version of Python happens to be installed in `<virtual-env-name>`
  
 #### Give Apache permission to access our project files:
   
-  cd /home/ubuntu/<project-folder-name>
+    cd /home/ubuntu/<project-folder-name>
 
 Give the group owner of database permissions to read/write the databse
 
-  chmod 664 db.sqlite3
+    chmod 664 db.sqlite3
  
 Then give the group Apache runs under ownership of the file
 
-  sudo chown :www-data db.sqlite3
+    sudo chown :www-data db.sqlite3
  
 Lastly, restart Apache:
 
-  sudo service apache2 restart
+    sudo service apache2 restart
  
 If everything was done correctly, we should now be able to view our website.
  
