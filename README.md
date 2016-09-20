@@ -9,13 +9,13 @@ This web app is built on Django 1.10. Check out the [Django Docs](https://docs.d
 
 ## DEVELOPMENT ENVIRONMENT SETUP
 
-### Pre-requirements
+### Pre-requisites
 
 **Python 3** and **Django 1.10** are required.
 
 ### Launching local server
 
-You will need to include **db.sqlite3** and **INT7_DO_NOT_UPLOAD.py* within your project directory in order for the application to run. You can contact us if you would like a copy of these files.
+You will need to include **db.sqlite3** and **INT7_DO_NOT_UPLOAD.py** within your project directory in order for the application to run. You can contact us if you would like a copy of these files.
 
 Once you have all your dependencies met, type into the terminal:
 
@@ -24,7 +24,7 @@ Once you have all your dependencies met, type into the terminal:
 
 ## DEPLOYMENT TO PRODUCTION
 
-### Pre-requirements
+### Pre-requisites
 
 **Python 3** and **Django 1.10** are required.
 
@@ -44,7 +44,7 @@ At this point you should have:
 
   - ubuntu
 
-   - <project-folder-name>
+   - `<project-folder-name>`
 
     - inertia7
 
@@ -56,9 +56,9 @@ At this point you should have:
 
     - **db.sqlite3**
 
-    - **INT7_DO_NOT_UPLOAD.py*
+    - **INT7_DO_NOT_UPLOAD.py**
 
-**db.sqlite3** and **INT7_DO_NOT_UPLOAD.py** are not located on the GitHub repository for security reasons but must be included within **<project-folder-name>** for the app to work.
+**db.sqlite3** and ** INT7_DO_NOT_UPLOAD.py ** are not located on the GitHub repository for security reasons but must be included within **<project-folder-name>** for the app to work.
 
 ### Instructions
 
