@@ -72,7 +72,7 @@ This guide was adapted from Digital Ocean's tutorial [How To Serve Django Applic
 
 #### Configure a Python Virtual Environment
 
-**You should be in directory**: **`<project-folder-name>`**
+At this point you should be in directory: **`<project-folder-name>`**
 	
 This allows us to keep the tools (Python modules) our project needs separate from our base Python installation.
  
